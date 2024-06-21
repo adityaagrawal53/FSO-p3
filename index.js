@@ -1,3 +1,18 @@
+const mongoose = require('mongoose')
+
+const url = process.env.MONGODB_URL
+
+mongoose.set('strictQuery', false)
+mongoose.connect(url)
+
+const personSchema = new mongoose.Schema({
+    name: String,
+    number: String,
+})
+
+const Person = mongoose.model('Person', personSchema)
+
+
 const express = require('express')
 const app = express()
 app.use(express.json())
@@ -37,7 +52,9 @@ let persons = [
 ]
 
 app.get('/api/persons',(request, response) => {
-    response.json(persons)
+    Person.find({}).then(person => {
+        response.json(person)
+    })
 })
 
 app.get('/info',(request, response) => {
@@ -97,4 +114,3 @@ const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
-
