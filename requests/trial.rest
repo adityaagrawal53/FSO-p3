@@ -7,6 +7,14 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/persons/1
+DELETE http://localhost:3001/api/persons/6675872203eccfda1e84d60a
 ###
 GET http://localhost:3001/api/persons
+###
+PUT http://localhost:3001/api/persons/667587ac4c2dac69f34b0143
+Content-Type: application/json 
+
+{  
+    "name" : "Jahn Doe",
+    "number" : "10123"
+} 
