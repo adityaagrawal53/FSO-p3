@@ -7,7 +7,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = "mongodb+srv://usvassa53:VUJBwRevlDBdNSIQ@fso-adag53.sfcygjk.mongodb.net/phonebook?retryWrites=true&w=majority&appName=fso-adag53"
+const url = `mongodb+srv://usvassa53:${password}@fso-adag53.sfcygjk.mongodb.net/phonebook?retryWrites=true&w=majority&appName=fso-adag53`
 
 mongoose.set('strictQuery', false)
 
@@ -27,14 +27,14 @@ if (process.argv.length === 5) {
     number: process.argv[4],
   })
 
-  person.save().then(result => {
+  person.save().then(() => {
     console.log(`added ${person.name} number ${person.number} to phonebook`)
     mongoose.connection.close()
   })
 
 }
 
-if (process.argv.length === 3) { 
+if (process.argv.length === 3) {
   Person.find({}).then(result => {
     console.log('phonebook:')
     result.forEach(person => {
